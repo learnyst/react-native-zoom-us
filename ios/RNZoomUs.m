@@ -107,7 +107,8 @@ RCT_EXPORT_METHOD(
     if (settings[@"disableClearWebKitCache"]) {
       disableClearWebKitCache = [[settings objectForKey:@"disableClearWebKitCache"] boolValue];
     }
-
+    
+    MobileRTCMeetingSettings *zoomSettings = [[MobileRTC sharedRTC] getMeetingSettings];
     [zoomSettings disableCallIn:true];
     [zoomSettings disableCallOut:true];
     [zoomSettings disableDriveMode:true];
