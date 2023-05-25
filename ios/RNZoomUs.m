@@ -117,6 +117,14 @@ RCT_EXPORT_METHOD(
     zoomSettings.meetingShareHidden = true;
     zoomSettings.topBarHidden = true;
 
+    [zoomSettings disableCallIn:true];
+    [zoomSettings disableCallOut:true];
+    [zoomSettings disableDriveMode:true];
+    zoomSettings.meetingPasswordHidden = true;
+    zoomSettings.meetingInviteHidden = true;
+    zoomSettings.meetingShareHidden = true;
+    zoomSettings.topBarHidden = true;
+
     [[MobileRTC sharedRTC] setLanguage:settings[@"language"]];
 
     MobileRTCAuthService *authService = [[MobileRTC sharedRTC] getAuthService];
