@@ -37,7 +37,6 @@ dependencies {
     implementation 'com.facebook.react:react-native:+' // From node_modules
     implementation 'com.github.zoom-us-community:jitpack-zoom-us:5.13.1.11014'
 
-    implementation 'com.airbnb.android:lottie:4.0.0'
 
     // Dependencies copied from mobilertc-android-studio/mobilertc/build.gradle
     // NB: We use com.google.android.flexbox:flexbox:3.0.0 because of "Could not find com.google.android:flexbox:2.0.1"
@@ -56,7 +55,7 @@ dependencies {
     implementation project(':exoplayer-library-ui')
     
     implementation 'com.google.android.flexbox:flexbox:3.0.0'
-    
+
     implementation 'androidx.multidex:multidex:2.0.0'
     implementation 'com.google.code.gson:gson:2.8.1'
     implementation 'com.github.bumptech.glide:annotations:4.11.0'
