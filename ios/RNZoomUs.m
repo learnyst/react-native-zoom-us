@@ -271,6 +271,20 @@ RCT_EXPORT_METHOD(isMeetingHost: (RCTPromiseResolveBlock)resolve rejecter:(RCTPr
   }
 }
 
+RCT_EXPORT_METHOD(getParticipantId: (RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
+  @try {
+    MobileRTCMeetingService *ms = [[MobileRTC sharedRTC] getMeetingService];
+    if (ms) {
+      NSString *participantId = [ms myselfUserID];
+      resolve(participantId);
+    } else {
+      reject(@"ERR_ZOOM_MEETING_SERVICE", @"Meeting service not available", nil);
+    }
+  } @catch (NSError *ex) {
+    reject(@"ERR_ZOOM_MEETING_CONTROL", @"Executing getParticipantId", ex);
+  }
+}
+
 RCT_EXPORT_METHOD(getInMeetingUserIdList: (RCTPromiseResolveBlock)resolve rejecter:(RCTPromiseRejectBlock)reject) {
   @try {
     MobileRTCMeetingService *ms = [[MobileRTC sharedRTC] getMeetingService];
