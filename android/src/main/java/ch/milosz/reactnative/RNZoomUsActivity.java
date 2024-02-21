@@ -13,13 +13,6 @@ public class RNZoomUsActivity extends NewMeetingActivity {
       super.onCreate(savedInstanceState);
       getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
   }
-
-   /*onCreate Added by Sridhar*/
-  @Override
-  protected void onCreate(Bundle savedInstanceState) {
-      super.onCreate(savedInstanceState);
-      getWindow().setFlags(WindowManager.LayoutParams.FLAG_SECURE, WindowManager.LayoutParams.FLAG_SECURE);
-  }
   public void onBackPressed() {
     onClickLeave();
   }
