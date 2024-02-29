@@ -213,6 +213,9 @@ async function isMeetingHost() {
 async function getInMeetingUserIdList() {
   return RNZoomUs.getInMeetingUserIdList();
 }
+async function getParticipantId() {
+  return RNZoomUs.getParticipantId();
+}
 
 async function rotateMyVideo(rotation: number) {
   if (Platform.OS === "android") {
@@ -282,5 +285,6 @@ export default {
   switchCamera,
   raiseMyHand,
   lowerMyHand,
+  getParticipantId,
   ...events,
 };

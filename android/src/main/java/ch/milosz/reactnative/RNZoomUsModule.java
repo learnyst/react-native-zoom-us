@@ -466,6 +466,28 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
   }
 
   @ReactMethod
+  public void getParticipantId(final Promise promise) {
+    UiThreadUtil.runOnUiThread(new Runnable() {
+      @Override
+      public void run() {
+        try {
+          
+          final ZoomSDK zoomSDK = ZoomSDK.getInstance();
+
+          if (!zoomSDK.isInitialized()) {
+            promise.resolve("ERR_UNEXPECTED_EXCEPTION");
+            return;
+          } 
+
+          final Long participantId =  zoomSDK.getInMeetingService().getParticipantId();
+          promise.resolve(Long.toString(participantId));
+        } catch (Exception ex) {
+          promise.reject("ERR_UNEXPECTED_EXCEPTION", ex);
+        }
+      }
+    });
+  }
+  @ReactMethod
   public void getInMeetingUserIdList(final Promise promise) {
     UiThreadUtil.runOnUiThread(new Runnable() {
       @Override
