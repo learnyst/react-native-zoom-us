@@ -7,7 +7,7 @@ import android.os.Bundle;
 
 public class RNZoomUsActivity extends NewMeetingActivity {
 
-  /*onCreate Added by Sridhar*/
+   /*onCreate Added by Sridhar*/
   @Override
   protected void onCreate(Bundle savedInstanceState) {
       super.onCreate(savedInstanceState);
