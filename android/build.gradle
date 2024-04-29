@@ -36,7 +36,7 @@ android {
 dependencies {
     implementation 'com.facebook.react:react-native:+' // From node_modules
 
-    implementation 'com.github.zoom-us-community:jitpack-zoom-us:5.17.11.20433'
+    implementation 'com.github.zoom-us-community:jitpack-zoom-us:5.16.2.16555'
 
     // Dependencies copied from mobilertc-android-studio/mobilertc/build.gradle
     // NB: We use com.google.android.flexbox:flexbox:3.0.0 because of "Could not find com.google.android:flexbox:2.0.1"
