@@ -881,6 +881,7 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
       initializePromise = null;
 
       // This might be the right spot for setMeetingSettings process
+      ZoomSDK.getInstance().getZoomUIService().hideMeetingInviteUrl(true);
       final MeetingSettingsHelper meetingSettingsHelper = ZoomSDK.getInstance().getMeetingSettingsHelper();
       if (meetingSettingsHelper != null) {
         meetingSettingsHelper.disableShowVideoPreviewWhenJoinMeeting(shouldDisablePreview);
