@@ -107,6 +107,11 @@ RCT_EXPORT_METHOD(
     if (settings[@"disableClearWebKitCache"]) {
       disableClearWebKitCache = [[settings objectForKey:@"disableClearWebKitCache"] boolValue];
     }
+
+   MobileRTCMeetingSettings *meetingSettings = [[MobileRTC sharedRTC] getMeetingSettings];
+    meetingSettings.meetingInviteHidden = YES;
+    meetingSettings.meetingInviteUrlHidden = YES;
+    meetingSettings.meetingPasswordHidden = YES;
     
     MobileRTCMeetingSettings *zoomSettings = [[MobileRTC sharedRTC] getMeetingSettings];
     [zoomSettings disableCallIn:true];
@@ -181,6 +186,11 @@ RCT_EXPORT_METHOD(
     shouldAutoConnectAudio = [[data objectForKey:@"autoConnectAudio"] boolValue];
     meetingPromiseResolve = resolve;
     meetingPromiseReject = reject;
+
+    MobileRTCMeetingSettings *meetingSettings = [[MobileRTC sharedRTC] getMeetingSettings];
+    meetingSettings.meetingInviteHidden = YES;
+    meetingSettings.meetingInviteUrlHidden = YES;
+    meetingSettings.meetingPasswordHidden = YES;
 
     MobileRTCMeetingSettings *zoomSettings = [[MobileRTC sharedRTC] getMeetingSettings];
     [zoomSettings disableCallIn:true];
