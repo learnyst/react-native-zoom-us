@@ -880,6 +880,7 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
       initializePromise.resolve("Initialize Zoom SDK successfully.");
       initializePromise = null;
 
+      ZoomSDK.getInstance().getZoomUIService().hideMeetingInviteUrl(true);
       // This might be the right spot for setMeetingSettings process
       final MeetingSettingsHelper meetingSettingsHelper = ZoomSDK.getInstance().getMeetingSettingsHelper();
       if (meetingSettingsHelper != null) {
