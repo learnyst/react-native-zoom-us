@@ -1263,7 +1263,7 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
     });
   }
   @Override
-  public void onCatalystInstanceDestroy() {
+  public void invalidate() {
     Log.i(TAG, "onCatalystInstanceDestroy");
     UiThreadUtil.runOnUiThread(new Runnable() {
       @Override
