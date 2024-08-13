@@ -125,6 +125,11 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
     return "RNZoomUs";
   }
 
+  @Override
+  public void onSinkJoin3rdPartyTelephonyAudio(String userId) {
+      // Implementation code here
+  }
+
   @ReactMethod
   public void isInitialized(final Promise promise) {
     UiThreadUtil.runOnUiThread(new Runnable() {
@@ -983,6 +988,14 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
   }
 
   // InMeetingServiceListener required listeners
+  public void InMeetingServiceListener(long ret) {
+    
+  }
+@Override
+public void onWebinarNeedInputScreenName(InMeetingEventHandler eventHandler) {
+    // Your implementation here
+    // You can use the eventHandler to input or handle the screen name
+}
   @Override
   public void onMeetingLeaveComplete(long ret) {
     updateVideoView();
@@ -1015,10 +1028,9 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
   public void onMeetingHostChanged(long userId) {
     sendEvent("MeetingEvent", "hostChanged", userId);
   }
-
-  @Override
-  @Deprecated
-  public void onMeetingCoHostChanged(long userId) {}
+  // @Override
+  // @Deprecated
+  // public void onMeetingCoHostChanged(long userId) {}
   @Override
   public void onMeetingCoHostChange(long userId, boolean isCoHost) {
     sendEvent("MeetingEvent", "coHostChanged", userId);
@@ -1108,16 +1120,16 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
   public void onActiveVideoUserChanged(long userId) {}
   @Override
   public void onActiveSpeakerVideoUserChanged(long userId) {}
-  @Override
-  @Deprecated
-  public void onSpotlightVideoChanged(boolean on) {}
+  // @Override
+  // @Deprecated
+  // public void onSpotlightVideoChanged(boolean on) {}
   @Override
   public void onSpotlightVideoChanged(List<Long> userList) {}
   @Override
   public void onSinkPanelistChatPrivilegeChanged(InMeetingChatController.MobileRTCWebinarPanelistChatPrivilege privilege) {}
-  @Override
-  @Deprecated
-  public void onUserNetworkQualityChanged(long userId) {};
+  // @Override
+  // @Deprecated
+  // public void onUserNetworkQualityChanged(long userId) {};
   @Override
   public void onSinkMeetingVideoQualityChanged(VideoQuality videoQuality, long userId) {}
   @Override
@@ -1136,9 +1148,9 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
   public void onSinkAttendeeChatPriviledgeChanged(int privilege) {}
   @Override
   public void onSinkAllowAttendeeChatNotification(int privilege) {}
-  @Override
-  @Deprecated
-  public void onUserNameChanged(long userId, String name) {}
+  // @Override
+  // @Deprecated
+  // public void onUserNameChanged(long userId, String name) {}
   @Override
   public void onUserNamesChanged(List<Long> userList) {}
   @Override
@@ -1262,25 +1274,25 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
       }
     });
   }
-  @Override
-  public void onCatalystInstanceDestroy() {
-    Log.i(TAG, "onCatalystInstanceDestroy");
-    UiThreadUtil.runOnUiThread(new Runnable() {
-      @Override
-      public void run() {
-        try {
-          final ZoomSDK zoomSDK = ZoomSDK.getInstance();
-          if (zoomSDK.isInitialized()) {
-            zoomSDK.getMeetingService().leaveCurrentMeeting(false);
-          }
+  // @Override
+  // public void onCatalystInstanceDestroy() {
+  //   Log.i(TAG, "onCatalystInstanceDestroy");
+  //   UiThreadUtil.runOnUiThread(new Runnable() {
+  //     @Override
+  //     public void run() {
+  //       try {
+  //         final ZoomSDK zoomSDK = ZoomSDK.getInstance();
+  //         if (zoomSDK.isInitialized()) {
+  //           zoomSDK.getMeetingService().leaveCurrentMeeting(false);
+  //         }
 
-          unregisterListener();
-        } catch (Exception ex) {
-          Log.e(TAG, ex.getMessage());
-        }
-      }
-    });
-  }
+  //         unregisterListener();
+  //       } catch (Exception ex) {
+  //         Log.e(TAG, ex.getMessage());
+  //       }
+  //     }
+  //   });
+  // }
 
   // React Native event emitters and event handling
   private void sendEvent(String name, String event) {
