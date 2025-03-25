@@ -1,13 +1,15 @@
 # react-native-zoom-us
 
-This is a bridge for ZoomUS SDK.
+This is a bridge for [ZoomUS Meeting SDK](https://developers.zoom.us/docs/meeting-sdk/).
+
+`NOTE`: In August 2024, [official bridge](https://developers.zoom.us/docs/meeting-sdk/react-native/) has been released.
 
 [![npm](https://img.shields.io/npm/v/react-native-zoom-us)](https://www.npmjs.com/package/react-native-zoom-us)
 
 | Platform | Version       |                                 SDK Url                                 |                                          Changelog                                          |
 | :------: | :------------ | :---------------------------------------------------------------------: | :-----------------------------------------------------------------------------------------: |
 |   iOS    | 5.17.11.14222 |      [ZoomSDK](https://github.com/zoom-us-community/zoom-sdk-pods)      |  [marketplace.zoom.us](https://marketplace.zoom.us/docs/changelog#labels/client-sdk-i-os)   |
-| Android  | 5.17.11.20433 | [jitpack-zoom-us](https://github.com/zoom-us-community/jitpack-zoom-us) | [marketplace.zoom.us](https://marketplace.zoom.us/docs/changelog#labels/client-sdk-android) |
+| Android  | 6.1.5.23231 | [jitpack-zoom-us](https://github.com/zoom-us-community/jitpack-zoom-us) | [marketplace.zoom.us](https://marketplace.zoom.us/docs/changelog#labels/client-sdk-android) |
 
 Tested on Android and iOS: ([See details](https://github.com/mieszko4/react-native-zoom-us#testing))
 

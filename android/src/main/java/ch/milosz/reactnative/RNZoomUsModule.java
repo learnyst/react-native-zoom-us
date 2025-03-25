@@ -32,8 +32,12 @@ import java.util.Iterator;
 import java.util.Collections;
 import java.util.Locale;
 
+import us.zoom.sdk.CameraControlRequestType;
+import us.zoom.sdk.CameraControlRequestResult;
 import us.zoom.sdk.MeetingParameter;
+import us.zoom.sdk.ICameraControlRequestHandler;
 import us.zoom.sdk.InMeetingVideoController;
+import us.zoom.sdk.IMeetingArchiveConfirmHandler;
 import us.zoom.sdk.InMeetingAudioController;
 import us.zoom.sdk.InMeetingChatMessage;
 import us.zoom.sdk.InMeetingEventHandler;
@@ -41,8 +45,10 @@ import us.zoom.sdk.InMeetingService;
 import us.zoom.sdk.InMeetingServiceListener;
 import us.zoom.sdk.InMeetingShareController;
 import us.zoom.sdk.InMeetingUserInfo;
+import us.zoom.sdk.IMeetingInputUserInfoHandler;
 import us.zoom.sdk.MeetingEndReason;
 import us.zoom.sdk.MeetingSettingsHelper;
+import us.zoom.sdk.MobileRTCShareContentType;
 import us.zoom.sdk.ZoomSDK;
 import us.zoom.sdk.ZoomError;
 import us.zoom.sdk.ZoomSDKInitializeListener;
@@ -51,6 +57,9 @@ import us.zoom.sdk.FreeMeetingNeedUpgradeType;
 import us.zoom.sdk.ShareSettingType;
 import us.zoom.sdk.IRequestLocalRecordingPrivilegeHandler;
 import us.zoom.sdk.LocalRecordingRequestPrivilegeStatus;
+import us.zoom.sdk.ZoomSDKFileReceiver;
+import us.zoom.sdk.ZoomSDKFileSender;
+import us.zoom.sdk.ZoomSDKFileTransferInfo;
 
 import us.zoom.sdk.SharingStatus;
 import us.zoom.sdk.MeetingStatus;
@@ -123,11 +132,6 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
   @Override
   public String getName() {
     return "RNZoomUs";
-  }
-
-  @Override
-  public void onSinkJoin3rdPartyTelephonyAudio(String userId) {
-      // Implementation code here
   }
 
   @ReactMethod
@@ -991,11 +995,6 @@ public class RNZoomUsModule extends ReactContextBaseJavaModule implements ZoomSD
   public void InMeetingServiceListener(long ret) {
     
   }
-@Override
-public void onWebinarNeedInputScreenName(InMeetingEventHandler eventHandler) {
-    // Your implementation here
-    // You can use the eventHandler to input or handle the screen name
-}
   @Override
   public void onMeetingLeaveComplete(long ret) {
     updateVideoView();
@@ -1028,9 +1027,6 @@ public void onWebinarNeedInputScreenName(InMeetingEventHandler eventHandler) {
   public void onMeetingHostChanged(long userId) {
     sendEvent("MeetingEvent", "hostChanged", userId);
   }
-  // @Override
-  // @Deprecated
-  // public void onMeetingCoHostChanged(long userId) {}
   @Override
   public void onMeetingCoHostChange(long userId, boolean isCoHost) {
     sendEvent("MeetingEvent", "coHostChanged", userId);
@@ -1120,16 +1116,10 @@ public void onWebinarNeedInputScreenName(InMeetingEventHandler eventHandler) {
   public void onActiveVideoUserChanged(long userId) {}
   @Override
   public void onActiveSpeakerVideoUserChanged(long userId) {}
-  // @Override
-  // @Deprecated
-  // public void onSpotlightVideoChanged(boolean on) {}
   @Override
   public void onSpotlightVideoChanged(List<Long> userList) {}
   @Override
   public void onSinkPanelistChatPrivilegeChanged(InMeetingChatController.MobileRTCWebinarPanelistChatPrivilege privilege) {}
-  // @Override
-  // @Deprecated
-  // public void onUserNetworkQualityChanged(long userId) {};
   @Override
   public void onSinkMeetingVideoQualityChanged(VideoQuality videoQuality, long userId) {}
   @Override
@@ -1148,9 +1138,6 @@ public void onWebinarNeedInputScreenName(InMeetingEventHandler eventHandler) {
   public void onSinkAttendeeChatPriviledgeChanged(int privilege) {}
   @Override
   public void onSinkAllowAttendeeChatNotification(int privilege) {}
-  // @Override
-  // @Deprecated
-  // public void onUserNameChanged(long userId, String name) {}
   @Override
   public void onUserNamesChanged(List<Long> userList) {}
   @Override
@@ -1185,6 +1172,31 @@ public void onWebinarNeedInputScreenName(InMeetingEventHandler eventHandler) {
   public void onLocalRecordingPrivilegeRequested(IRequestLocalRecordingPrivilegeHandler handler) {}
   @Override
   public void onRequestLocalRecordingPrivilegeChanged(LocalRecordingRequestPrivilegeStatus status) {}
+  @Override
+  public void onWebinarNeedInputScreenName(InMeetingEventHandler handler) {}
+  @Override
+  public void onSinkJoin3rdPartyTelephonyAudio(String audioInfo) {}
+  @Override
+  public void onUserConfirmToStartArchive(IMeetingArchiveConfirmHandler handler) {}
+  @Override
+  public void onJoinMeetingNeedUserInfo(IMeetingInputUserInfoHandler handler) {}
+  @Override
+  public void onCameraControlRequestReceived(long userId, CameraControlRequestType requestType, ICameraControlRequestHandler handler) {}
+  @Override
+  public void onFileSendStart(ZoomSDKFileSender sender) {}
+  @Override
+  public void onFileReceived(ZoomSDKFileReceiver receiver) {}
+  @Override
+  public void onFileTransferProgress(ZoomSDKFileTransferInfo info) {}
+  @Override
+  @Deprecated
+  public void onCameraControlRequestResult(long userId, boolean isApproved) {}
+  @Override
+  public void onCameraControlRequestResult(long userId, CameraControlRequestResult result) {}
+  @Override
+  public void onMuteOnEntryStatusChange(boolean enable){}
+  @Override
+  public void onMeetingTopicChanged(String topic) {}
 
   // InMeetingShareListener event listeners
   // DEPRECATED: onShareActiveUser is just kept for now for backwards compatibility of events
@@ -1198,6 +1210,9 @@ public void onWebinarNeedInputScreenName(InMeetingEventHandler eventHandler) {
       sendEvent("MeetingEvent", "screenShareStopped");
     }
   }
+
+  @Override
+  public void onShareContentChanged(MobileRTCShareContentType type) {}
 
   @Override
   public void onShareSettingTypeChanged(ShareSettingType type) {}
